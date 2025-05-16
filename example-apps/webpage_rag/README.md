@@ -3,6 +3,10 @@ This is a **Streamlit** app that allows you to chat with any public webpage usin
 
 This example requires an active Tenstorrent instance running on Koyeb.  To deploy your first service using Tenstorrent instances on Koyeb, refer to Koyeb's [tenstorrent-examples repository](https://github.com/koyeb/tenstorrent-examples).
 
+## Demo
+
+https://github.com/user-attachments/assets/325570dc-8a95-4b6c-a5e9-75ce76037a0c
+
 ## Features
 - Input a webpage URL
 - Ask questions about the content of the webpage
@@ -21,18 +25,7 @@ cd tt-example-apps/example-apps/webpage_rag
 pip install -r requirements.txt
 ```
 
-### 3. Update the configuration at the top of `webpage_rag.py` to specify the model name and public URL of your Tenstorrent instance on Koyeb.
-```bash
-# Configuration
-BASE_URL = "https://<YOUR INSTANCE PUBLIC URL>.koyeb.app"
-MODEL = "Qwen/Qwen2.5-7B-Instruct"
-```
-
-*The following models have been tested:*
-- *Qwen/Qwen2.5-7B-Instruct*
-- *meta-llama/Llama-3.1-8B-Instruct*
-
-### 4. Run the Streamlit app
+### 3. Run the Streamlit app
 ```bash
 streamlit run webpage_rag.py
 ```
