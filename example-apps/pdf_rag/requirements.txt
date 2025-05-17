@@ -1,0 +1,4 @@
+requests
+streamlit
+PyPDF2
+chromadb
