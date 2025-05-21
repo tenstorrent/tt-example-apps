@@ -5,7 +5,7 @@ This example requires an active Tenstorrent instance running on Koyeb.  To deplo
 
 ## Demo
 
-https://github.com/user-attachments/assets/b4c618bb-2396-428c-9277-638c4d979211
+https://github.com/user-attachments/assets/cb6c8832-76ad-489d-a3e5-f7225af349f1
 
 ### Features
 - Fetches current weather for the requested location.

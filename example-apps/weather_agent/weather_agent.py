@@ -56,84 +56,85 @@ def main():
         
         weather_api_key = st.text_input("Enter your Weather API key.", type="password")
         if weather_api_key:
-            openai_api_key = st.text_input("Enter your OpenAI API key.", type="password")
-            if openai_api_key:
-                client = OpenAI(base_url=urljoin(tt_base_url, "v1"), api_key=openai_api_key)
+            client = OpenAI(base_url=urljoin(tt_base_url, "v1"), api_key="null")
 
-                tools = [{
-                    "type": "function",
-                    "function": {
-                        "name": "get_weather",
-                        "description": "Get the current weather in a given location",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "location": {
-                                    "type": "string", 
-                                    "description": "The city, region, or place, like 'Austin, TX', 'New York City', or 'Barcelona'"
-                                },
-                                "unit": {
-                                    "type": "string",
-                                    "enum": ["celsius", "fahrenheit"],
-                                    "description": "The standard unit of temperature measurement used in the location."
-                                }
+            tools = [{
+                "type": "function",
+                "function": {
+                    "name": "get_weather",
+                    "description": "Get the current weather in a given location",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "location": {
+                                "type": "string", 
+                                "description": "The city, region, or place, like 'Austin, TX', 'New York City', or 'Barcelona'"
                             },
-                            "required": ["location", "unit"],
-                            "additionalProperties": False
-                        }
+                            "unit": {
+                                "type": "string",
+                                "enum": ["celsius", "fahrenheit"],
+                                "description": "The standard unit of temperature measurement used in the location."
+                            }
+                        },
+                        "required": ["location", "unit"],
+                        "additionalProperties": False
                     }
-                }]
+                }
+            }]
 
-                user_query = st.text_input("Ask for the weather in a specific location (i.e. What's the weather like in Anchorage in Fahrenheit?)")
-                if user_query:
-                    with st.spinner("💬 Calling function to extract search parameters..."):
-                        response = client.chat.completions.create(
-                            model=model_name,
-                            messages=[{"role": "user", "content": user_query}],
-                            tools=tools,
-                            tool_choice={"type": "function", "function": {"name": "get_weather"}}
-                        )
-                    st.success("✅ Retrieved response.")
+            user_query = st.text_input(
+                "Ask for the weather in a specific location or how to dress.", 
+                help='For example: "How should I dress in Anchorage? Tell me the temp in Fahrenheit"'
+            )
+            if user_query:
+                with st.spinner("💬 Calling function to extract search parameters..."):
+                    response = client.chat.completions.create(
+                        model=model_name,
+                        messages=[{"role": "user", "content": user_query}],
+                        tools=tools,
+                        tool_choice={"type": "function", "function": {"name": "get_weather"}}
+                    )
+                st.success("✅ Retrieved response.")
 
-                    tool_call = response.choices[0].message.tool_calls[0]
-                    cleaned_args = json.loads(re.sub(r"<\|.*?\|>", "", tool_call.function.arguments).strip())
-                    parameters = cleaned_args['parameters']
+                tool_call = response.choices[0].message.tool_calls[0]
+                cleaned_args = json.loads(re.sub(r"<\|.*?\|>", "", tool_call.function.arguments).strip())
+                parameters = cleaned_args['parameters']
 
-                    with st.spinner("🌦️ Getting real-time weather data..."):
-                        context = get_weather(parameters['location'], parameters['unit'], weather_api_key)
-                    st.success(context)
+                with st.spinner("🌦️ Getting real-time weather data..."):
+                    context = get_weather(parameters['location'], parameters['unit'], weather_api_key)
+                st.success(context)
 
-                    system_message = {
-                        "role": "system",
-                        "content":
-                            """
-                            You are a helpful assistant that gives practical outfit recommendations based on the current weather conditions provided.\n
-                            When given details like temperature, rain, wind, and other weather factors, suggest appropriate clothing items and accessories for comfort.\n  
-                            Keep your suggestions concise, relevant, and user-friendly.\n  
-                            Example:  
-                            - "It's cold and windy, wear a warm coat and a scarf."  
-                            - "Expect rain, bring an umbrella and wear waterproof shoes."  
-                            Avoid repeating the weather data; focus on actionable advice.
-                            """
-                    }
+                system_message = {
+                    "role": "system",
+                    "content":
+                        """
+                        You are a helpful assistant that gives practical outfit recommendations based on the current weather conditions provided.\n
+                        When given details like temperature, rain, wind, and other weather factors, suggest appropriate clothing items and accessories for comfort.\n  
+                        Keep your suggestions concise, relevant, and user-friendly.\n  
+                        Example:  
+                        - "It's cold and windy, wear a warm coat and a scarf."  
+                        - "Expect rain, bring an umbrella and wear waterproof shoes."  
+                        Avoid repeating the weather data; focus on actionable advice.
+                        """
+                }
 
-                    user_message = {"role": "user", "content": user_query}
-                    tool_call_message = {
-                        "role": "tool",
-                        "tool_call_id": tool_call.id,
-                        "content": context
-                    }
+                user_message = {"role": "user", "content": user_query}
+                tool_call_message = {
+                    "role": "tool",
+                    "tool_call_id": tool_call.id,
+                    "content": context
+                }
 
-                    with st.spinner("💬 Generating final answer..."):
-                        res = client.chat.completions.create(
-                            model=model_name,
-                            messages=[system_message, user_message, tool_call_message]
-                        )
+                with st.spinner("💬 Generating final answer..."):
+                    res = client.chat.completions.create(
+                        model=model_name,
+                        messages=[system_message, user_message, tool_call_message]
+                    )
 
-                        final_response = json.loads(res.to_json())['choices'][0]['message']['content'].strip()
+                    final_response = json.loads(res.to_json())['choices'][0]['message']['content'].strip()
 
-                    st.success("✅ Done!")
-                    st.write(final_response)
+                st.success("✅ Done!")
+                st.write(final_response)
 
 
 if __name__ == "__main__":
