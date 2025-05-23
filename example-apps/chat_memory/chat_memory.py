@@ -2,20 +2,6 @@ from urllib.parse import urljoin
 
 from openai import OpenAI
 import streamlit as st
-import requests
-
-
-def get_model_name(base_url):
-    res = requests.get(
-        urljoin(base_url, "/v1/models"), 
-        headers={"accept": "application/json"}
-    )
-
-    if res.status_code != 200:
-        st.error("Error fetching model name from instance!", icon="🚨")
-
-    available_models = [m['id'] for m in res.json()['data']]
-    return available_models[0]
 
 
 def main():
@@ -33,7 +19,8 @@ def main():
         client = OpenAI(base_url=urljoin(st.session_state.tt_base_url, "v1"), api_key="null")
 
         if "model_name" not in st.session_state:
-            st.session_state.model_name = get_model_name(st.session_state.tt_base_url)
+            models = client.models.list()
+            st.session_state.model_name = models.data[0].id
 
         st.info(f"Using model: {st.session_state.model_name}", icon="✅")
 
