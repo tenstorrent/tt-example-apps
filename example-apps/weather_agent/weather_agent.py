@@ -97,7 +97,6 @@ def main():
 
                 cleaned_args = re.sub(r"<\|.*?\|>", "", tool_call.function.arguments).strip()
                 parameters = json.loads(cleaned_args)['parameters']
-                context = get_weather(parameters['location'], parameters['unit'], weather_api_key)
 
                 with st.spinner("🌦️ Getting real-time weather data..."):
                     context = get_weather(parameters['location'], parameters['unit'], weather_api_key)
