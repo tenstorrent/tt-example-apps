@@ -22,6 +22,7 @@ These examples require an active Tenstorrent instance running on Koyeb.  To depl
 * [🗺️ AI Travel Guide](https://github.com/tenstorrent/tt-example-apps/tree/main/example-apps/travel_guide)
 * [🌦️ AI Weather Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/example-apps/weather_agent)
 * [🔎 Agno Web Search Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/example-apps/agno_web_search)
+* [📈 Investment Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/example-apps/investment_agent)
 
 ## Chat Apps
 * [🤖 Streaming Chatbot with Memory](https://github.com/tenstorrent/tt-example-apps/tree/main/example-apps/chat_memory)
