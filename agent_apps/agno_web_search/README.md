@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/8395336b-04d3-43a5-93e2-48b1f5eba141
 ### 1. Clone the GitHub repository
 ```bash
 git clone https://github.com/tenstorrent/tt-example-apps.git
-cd tt-example-apps/example-apps/agno_web_search
+cd tt-example-apps/agent_apps/agno_web_search
 ```
 
 ### 2. Install the required dependencies:

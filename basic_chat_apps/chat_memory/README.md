@@ -17,7 +17,7 @@ https://github.com/user-attachments/assets/60617d74-e645-4167-9538-e08d26443e36
 ### 1. Clone the GitHub repository
 ```bash
 git clone https://github.com/tenstorrent/tt-example-apps.git
-cd tt-example-apps/example-apps/chat_memory
+cd tt-example-apps/basic_chat_apps/chat_memory
 ```
 
 ### 2. Install the required dependencies

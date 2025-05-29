@@ -17,7 +17,7 @@ https://github.com/user-attachments/assets/d642d76f-1b83-49fb-9c90-65bf4eacd10d
 ### 1. Clone the GitHub repository
 ```bash
 git clone https://github.com/tenstorrent/tt-example-apps.git
-cd tt-example-apps/example-apps/travel_guide
+cd tt-example-apps/agent_apps/travel_guide
 ```
 
 ### 2. Install the required dependencies

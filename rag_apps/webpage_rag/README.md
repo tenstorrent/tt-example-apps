@@ -17,7 +17,7 @@ https://github.com/user-attachments/assets/325570dc-8a95-4b6c-a5e9-75ce76037a0c
 ### 1. Clone the GitHub repository
 ```bash
 git clone https://github.com/tenstorrent/tt-example-apps.git
-cd tt-example-apps/example-apps/webpage_rag
+cd tt-example-apps/rag_apps/webpage_rag
 ```
 
 ### 2. Install the required dependencies:

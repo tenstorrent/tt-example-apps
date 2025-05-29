@@ -17,7 +17,7 @@ https://github.com/user-attachments/assets/d5c34f55-31e2-4c72-b5ba-77a0761d614e
 ### 1. Clone the GitHub repository
 ```bash
 git clone https://github.com/tenstorrent/tt-example-apps.git
-cd tt-example-apps/example-apps/weather_agent
+cd tt-example-apps/agent_apps/weather_agent
 ```
 
 ### 2. Install the required dependencies

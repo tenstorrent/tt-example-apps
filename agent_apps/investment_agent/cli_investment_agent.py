@@ -3,8 +3,8 @@ from agno.models.openai import OpenAILike
 from agno.tools.yfinance import YFinanceTools
 from agno.tools.reasoning import ReasoningTools
 
-tt_base_url = ""
-model_id = ""
+tt_base_url = "https://<YOUR_DOMAIN_PREFIX>.koyeb.app/v1"
+model_id = "meta-llama/Llama-3.1-8B-Instruct"
 stock = "NVDA"
 
 agent = Agent(
