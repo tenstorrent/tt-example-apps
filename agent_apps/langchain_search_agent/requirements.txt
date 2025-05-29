@@ -1,0 +1,6 @@
+langchain-community 
+langchain-openai
+langgraph
+tavily-python 
+streamlit
+requests

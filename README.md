@@ -21,6 +21,7 @@ This repo contains a set of plug-and-play applications built to showcase what’
 * [🌦️ AI Weather Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/weather_agent)
 * [🔎 Agno Web Search Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/agno_web_search)
 * [📈 Agno Investment Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/investment_agent)
+* [⛓️ LangChain Web Search Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/langchain_search_agent)
 
 ## RAG Apps
 * [🌐 Webpage RAG](https://github.com/tenstorrent/tt-example-apps/tree/main/rag_apps/webpage_rag)
