@@ -1,18 +1,20 @@
-<div align="center">
+<p align="center">
+  <img src="https://github.com/tenstorrent/tt-metal/blob/main/docs/source/common/images/favicon.png" width="120" height="120" />
+</p>
 
-<img src="https://github.com/tenstorrent/tt-metal/blob/main/docs/source/common/images/favicon.png" width="180" height="180" />
+<h1 align="center"> Tenstorrent AI Example Apps</h1>
+<p align="center">End-to-end AI apps running on Tenstorrent AI accelerators</p>
 
-<h1>
+<p align="center">
+  <a href="https://discord.gg/tenstorrent">
+    <img src="https://img.shields.io/discord/1202678699468750899?label=Join%20Discord&logo=discord&style=flat" alt="Join Discord" />
+  </a>
+</p>
 
-Welcome to Tenstorrent's Example Apps Repository!
 
-</h1>
+This repo contains a set of plug-and-play applications built to showcase what’s possible with Tenstorrent hardware. These apps cover common use cases like RAG, AI Agents, Chatbots and more.
+> All examples require a running Tenstorrent instance on Koyeb. Use the [Koyeb Tenstorrent setup guide](https://github.com/koyeb/tenstorrent-examples) to get started.
 
-</div>
-
-This repository showcases end-to-end application examples that run LLM inference on Tenstorrent AI accelerators.
-
-These examples require an active Tenstorrent instance running on Koyeb.  To deploy your first service using Tenstorrent instances on Koyeb, refer to Koyeb's [tenstorrent-examples repository](https://github.com/koyeb/tenstorrent-examples).
 
 ## Agent Apps
 * [🗺️ AI Travel Guide](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/travel_guide)
