@@ -50,7 +50,7 @@ def call_chat_completion(question, context):
 
     headers = {"Content-Type": "application/json"}
     payload = {
-        "model": model_name,
+        "model": model_id,
         "messages": [system_message, user_message],
         "max_tokens": 200
     }
@@ -77,14 +77,14 @@ st.caption(f"Chat with a webpage using LLM + RAG")
 tt_base_url = st.text_input("Enter the public URL of your Tenstorrent instance on Koyeb.")
 
 if tt_base_url:
-    model_name_response = get_available_models(tt_base_url)  # Model names will be fetched from Tenstorrent instance
+    model_id_response = get_available_models(tt_base_url)  # Model names will be fetched from Tenstorrent instance
 
-    if model_name_response.status_code != 200:
+    if model_id_response.status_code != 200:
         st.write("Error fetching model name from instance.")
-        model_name = st.text_input("Enter the name of the model")
+        model_id = st.text_input("Enter the name of the model")
     else:
-        available_models = [m['id'] for m in model_name_response.json()['data']]
-        model_name = st.selectbox("Select the LLM to use.", available_models, help=f"These are the available models on {tt_base_url}")
+        available_models = [m['id'] for m in model_id_response.json()['data']]
+        model_id = st.selectbox("Select the LLM to use.", available_models, help=f"These are the available models on {tt_base_url}")
 
     webpage_url = st.text_input("Enter Webpage URL")
 

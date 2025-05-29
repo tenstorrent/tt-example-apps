@@ -18,11 +18,11 @@ def main():
     if st.session_state.tt_base_url:
         client = OpenAI(base_url=urljoin(st.session_state.tt_base_url, "v1"), api_key="null")
 
-        if "model_name" not in st.session_state:
+        if "model_id" not in st.session_state:
             models = client.models.list()
-            st.session_state.model_name = models.data[0].id
+            st.session_state.model_id = models.data[0].id
 
-        st.info(f"Using model: {st.session_state.model_name}", icon="✅")
+        st.info(f"Using model: {st.session_state.model_id}", icon="✅")
 
         if "messages" not in st.session_state:
             st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant."}]
@@ -39,7 +39,7 @@ def main():
 
             with st.chat_message("assistant"):
                 stream = client.chat.completions.create(
-                    model=st.session_state.model_name,
+                    model=st.session_state.model_id,
                     messages=[
                         {"role": m["role"], "content": m["content"]}
                         for m in st.session_state.messages

@@ -26,7 +26,7 @@ def call_tool_completion(endpoint, payload):
     )
 
 
-def call_final_response(user_query, endpoint, model_name, context, tool_call):
+def call_final_response(user_query, endpoint, model_id, context, tool_call):
     system_message = {
         "role": "system",
         "content":
@@ -49,7 +49,7 @@ def call_final_response(user_query, endpoint, model_name, context, tool_call):
     }
 
     payload = {
-        "model": model_name,
+        "model": model_id,
         "messages": [system_message, user_message, tool_call_message],
         "max_tokens": 200
     }
@@ -86,7 +86,7 @@ def get_search_tool():
     }
 
 
-def get_tool_payload(model_name, user_query):
+def get_tool_payload(model_id, user_query):
     search_tool = get_search_tool()
 
     tool_choice = {
@@ -97,7 +97,7 @@ def get_tool_payload(model_name, user_query):
     }
 
     tool_payload = {
-        "model": model_name,
+        "model": model_id,
         "messages": [
             {"role": "user", "content": user_query}
         ],
@@ -117,15 +117,15 @@ def main():
     CHAT_ENDPOINT = urljoin(tt_base_url, "/v1/chat/completions")
 
     if tt_base_url:
-        model_name_response = get_available_models(tt_base_url)
+        model_id_response = get_available_models(tt_base_url)
 
-        if model_name_response.status_code != 200:
+        if model_id_response.status_code != 200:
             st.write("Error fetching model names from instance.")
-            model_name = st.text_input("Enter the name of the model")
+            model_id = st.text_input("Enter the name of the model")
         else:
-            available_models = [m['id'] for m in model_name_response.json()['data']]
+            available_models = [m['id'] for m in model_id_response.json()['data']]
 
-            model_name = st.selectbox(
+            model_id = st.selectbox(
                 "Select the LLM to use.",
                 available_models,
                 help=f"These are the available models on {tt_base_url}"
@@ -138,7 +138,7 @@ def main():
 
             if user_query:
                 with st.spinner("💬 Calling function to extract search parameters..."):
-                    tool_payload = get_tool_payload(model_name, user_query)
+                    tool_payload = get_tool_payload(model_id, user_query)
                     tool_response = call_tool_completion(CHAT_ENDPOINT, tool_payload)
                 st.success("✅ Retrieved response.")
 
@@ -166,7 +166,7 @@ def main():
                 st.success("✅ Retrieved search results and prepared context!")
 
                 with st.spinner("💬 Generating final answer..."):
-                    final_response = call_final_response(user_query, CHAT_ENDPOINT, model_name, context, tool_call)
+                    final_response = call_final_response(user_query, CHAT_ENDPOINT, model_id, context, tool_call)
                     st.write(final_response)
                 st.success("✅ Done!")
 

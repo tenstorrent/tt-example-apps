@@ -39,7 +39,7 @@ def chunk(text, size=100, overlap=30):
     return [" ".join(words[i:i+size]) for i in range(0, len(words), size - overlap)]
 
 
-def call_chat_completion(query, context, model_name, tt_base_url):
+def call_chat_completion(query, context, model_id, tt_base_url):
     system_message = {
         "role": "system",
         "content":
@@ -57,7 +57,7 @@ def call_chat_completion(query, context, model_name, tt_base_url):
 
     headers = {"Content-Type": "application/json"}
     payload = {
-        "model": model_name,
+        "model": model_id,
         "messages": [system_message, user_message],
         "max_tokens": 200
     }
@@ -81,15 +81,15 @@ def main():
 
     if tt_base_url:
         # Fetch available models from Tenstorrent instance
-        model_name_response = get_available_models(tt_base_url)
+        model_id_response = get_available_models(tt_base_url)
 
-        if model_name_response.status_code != 200:
+        if model_id_response.status_code != 200:
             st.write("Error fetching model names from instance.")
-            model_name = st.text_input("Enter the name of the model")
+            model_id = st.text_input("Enter the name of the model")
         else:
-            available_models = [m['id'] for m in model_name_response.json()['data']]
+            available_models = [m['id'] for m in model_id_response.json()['data']]
 
-            model_name = st.selectbox(
+            model_id = st.selectbox(
                 "Select the LLM to use.",
                 available_models,
                 help=f"These are the available models on {tt_base_url}"
@@ -121,7 +121,7 @@ def main():
                     docs = col.query(query_texts=[query], n_results=3)['documents'][0]
                     context = "\n".join(docs)
 
-                    response = call_chat_completion(query, context, model_name, tt_base_url)
+                    response = call_chat_completion(query, context, model_id, tt_base_url)
 
                     st.markdown("**Answer:**")
                     st.write(response)

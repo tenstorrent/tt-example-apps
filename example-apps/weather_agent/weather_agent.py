@@ -36,7 +36,7 @@ def main():
     if tt_base_url:
         client = OpenAI(base_url=urljoin(tt_base_url, "v1"), api_key="null")
         models = client.models.list()
-        model_name = models.data[0].id
+        model_id = models.data[0].id
         
         weather_api_key = st.text_input("Enter your Weather API key.", type="password")
         if weather_api_key:
@@ -86,7 +86,7 @@ def main():
             if user_query:
                 with st.spinner("💬 Calling function to extract search parameters..."):
                     response = client.chat.completions.create(
-                        model=model_name,
+                        model=model_id,
                         messages=[system_message, {"role": "user", "content": user_query}],
                         tools=tools,
                         tool_choice={"type": "function", "function": {"name": "get_weather"}}
@@ -126,7 +126,7 @@ def main():
 
                 with st.chat_message("assistant"):
                     stream = client.chat.completions.create(
-                        model=model_name,
+                        model=model_id,
                         messages=messages,
                         stream=True
                     )
