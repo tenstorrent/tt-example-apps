@@ -1,0 +1,5 @@
+langchain-community 
+langchain-openai
+langgraph
+streamlit
+requests
