@@ -46,9 +46,16 @@ This repo contains a set of plug-and-play applications built to showcase what’
     cd basic_chat_apps/chat_memory
     ```
 
-3. **Install the required dependencies**
+3. **Create a virtual environment**
 
     ```bash
+    python3 -m venv venv
+    ```
+
+4. **Activate the environment and install the required dependencies**
+
+    ```bash
+    source venv/bin/activate
     pip install -r requirements.txt
     ```
 
