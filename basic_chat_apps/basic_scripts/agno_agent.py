@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: (c) 2025 Tenstorrent AI ULC
+#
+# SPDX-License-Identifier: Apache-2.0
 """
 This script demonstrates how to create an Agno agent that uses a custom function 
 to retrieve context before responding.  In this example, the model will retrieve

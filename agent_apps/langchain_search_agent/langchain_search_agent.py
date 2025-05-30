@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: (c) 2025 Tenstorrent AI ULC
+#
+# SPDX-License-Identifier: Apache-2.0
 from urllib.parse import urljoin
 
 from langchain_community.tools.tavily_search import TavilySearchResults

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: (c) 2025 Tenstorrent AI ULC
+#
+# SPDX-License-Identifier: Apache-2.0
 """This is an extremely simple chatbot that streams its responses and remembers previous messages."""
 
 from openai import OpenAI

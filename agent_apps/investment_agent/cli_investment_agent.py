@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: (c) 2025 Tenstorrent AI ULC
+#
+# SPDX-License-Identifier: Apache-2.0
 from agno.agent import Agent
 from agno.models.openai import OpenAILike
 from agno.tools.yfinance import YFinanceTools
