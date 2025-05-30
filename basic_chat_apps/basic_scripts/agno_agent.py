@@ -41,8 +41,9 @@ def main():
     agent = Agent(
         model=OpenAILike(id=model_id, api_key="null", base_url=tt_base_url),
         tools=[fetch_weather],
-        instructions=[
-            "You are a helpful assistant that gives practical outfit recommendations based on the current weather conditions."
+        instructions=[  # Adjust instructions to guide the agent's response.
+            "You are a helpful assistant that gives practical outfit recommendations based on the current weather conditions.",
+            "Your only function available is fetch_weather.  Use your existing knowledge for outfit recommendations."
         ],
         markdown=True
     )

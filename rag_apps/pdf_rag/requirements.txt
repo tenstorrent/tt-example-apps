@@ -1,4 +1,4 @@
 requests
 streamlit
-PyPDF2
+pypdf
 chromadb

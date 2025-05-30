@@ -2,7 +2,7 @@ from urllib.parse import urljoin
 
 import requests
 import streamlit as st
-import PyPDF2
+import pypdf
 import chromadb
 
 
@@ -31,7 +31,7 @@ def process_pdf(pdf, col):
 
 
 def extract_text(pdf):
-    return "".join(p.extract_text() for p in PyPDF2.PdfReader(pdf).pages)
+    return "".join(p.extract_text() for p in pypdf.PdfReader(pdf).pages)
 
 
 def chunk(text, size=100, overlap=30):
