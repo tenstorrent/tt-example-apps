@@ -37,13 +37,22 @@ def main():
                 instructions=[
                     "You are a helpful assistant.",
                     "Search the web for real-time information."
+                    "Use the information to create an accurate response."
                 ],
                 markdown=True
             )
 
             with st.spinner("🔍 Searching the web for the latest information..."):
-                response = agent.run(user_query)
-                st.write(response.content)
+                response = agent.run(user_query, stream=True)
+
+                response_text = ""
+                placeholder = st.empty()
+
+                for chunk in response:
+                    response_text += chunk.content
+                    placeholder.markdown(response_text + "▌")
+
+                placeholder.markdown(response_text)
 
 
 if __name__ == "__main__":
