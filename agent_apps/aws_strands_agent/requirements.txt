@@ -1,0 +1,4 @@
+strands-agents[openai]
+strands-agents
+strands-agents-tools
+streamlit

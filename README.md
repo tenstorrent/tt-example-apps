@@ -17,6 +17,7 @@ This repo contains a set of plug-and-play applications built to showcase what’
 
 
 ## Agent Apps
+* [📄 AWS Strands File-Read Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/aws_strands_agent)
 * [💱 OpenAI Exchange Rate Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/openai_exchange_rate_agent)
 * [🗺️ AI Travel Guide](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/travel_guide)
 * [🌦️ AI Weather Agent](https://github.com/tenstorrent/tt-example-apps/tree/main/agent_apps/weather_agent)
