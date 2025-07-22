@@ -28,6 +28,14 @@ def fetch_weather(location):
 
 
 def main():
+    """
+    1. Define tools in JSON schema
+    2. Create user and system messages
+    3. Call completion to get tool call parameters
+    4. Run function with tool call parameters
+    5. Give tool call and tool output back to model as context
+    6. Run final chat completion for final response.
+    """
     tt_base_url = os.environ["TT_BASE_URL"]  # "https://<...>.koyeb.app/v1"
 
     client = OpenAI(base_url=tt_base_url, api_key="null")
@@ -37,7 +45,7 @@ def main():
     tools = [{
         "type": "function",
         "function": {
-            "name": "get_weather",
+            "name": "fetch_weather",
             "description": "Get the current weather in a given location",
             "parameters": {
                 "type": "object",
@@ -68,7 +76,7 @@ def main():
             Example:
             - "It's cold and windy, wear a warm coat and a scarf."
             - "Expect rain, bring an umbrella and wear waterproof shoes."
-            Repeat the weather data so the user knows the exact forecast.
+            You must repeat the weather data so the user knows the exact forecast.
             """
     }
 

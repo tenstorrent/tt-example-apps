@@ -49,7 +49,7 @@ def main():
     tools = [{
         "type": "function",
         "function": {
-            "name": "get_weather",
+            "name": "fetch_weather",
             "description": "Get the current weather in a given location",
             "parameters": {
                 "type": "object",
@@ -80,7 +80,7 @@ def main():
             Examples:
             - "It's cold and windy, wear a warm coat and a scarf."
             - "Expect rain, bring an umbrella and wear waterproof shoes."
-            Repeat the weather data so the user knows the exact forecast.
+            You must repeat the weather data so the user knows the exact forecast.
             """
     }
 
